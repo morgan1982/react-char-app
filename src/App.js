@@ -6,7 +6,10 @@ import CharComponent from './CharComponent/charcomponent';
 class App extends Component {
   state = {
     label: 'bale to text',
-    length: ''
+    length: '',
+    colors: [
+      'red', 'blue', 'pink', 'orange', 'yellow'
+    ]
   }
 
   changeHandler = (e) =>
@@ -41,10 +44,20 @@ class App extends Component {
     let chars = [...this.state.label];
     // let splitChars = chars.split('');
     // console.log(splitChars);
+    let colors = this.state.colors[(Math.floor(Math.random() * (5 - 0) + 0))]
+    console.log(Math.floor(Math.random() * (5 - 0) + 0));
+    let charStyle = {
+      color: 'black',
+      backgroundColor: colors
+    }
 
     let CharElement = chars.map((char, id) => {
       if (char !== ' ') {
-      return <CharComponent letter={char} key={id} deleted={() => this.deleteHandler(id)}/>
+      return <CharComponent
+              letter={char}
+              key={id}
+              deleted={() => this.deleteHandler(id)}
+              style={charStyle}/>
       }
     })
     // let lettersList = letters.map((letter) => {
