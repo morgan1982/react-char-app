@@ -5,7 +5,7 @@ const CharComponent = (props) => {
 
 
     return (
-        <div className="char">
+        <div className="char" onClick={props.deleted}>
             {props.letter}
         </div>
         )

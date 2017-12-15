@@ -22,8 +22,12 @@ class App extends Component {
       length
     })
   }
-  charhandler = () => {
-
+  deleteHandler = (id) => {
+    const letters = [...this.state.label];
+    letters.splice(id, 1)
+    this.setState({
+      label: letters
+    })
   }
 
 
@@ -33,12 +37,15 @@ class App extends Component {
   render() {
 
 
-    let chars = this.state.label.slice();
-    let splitChars = chars.split('');
-    console.log(splitChars);
+    // let chars = this.state.label.slice();
+    let chars = [...this.state.label];
+    // let splitChars = chars.split('');
+    // console.log(splitChars);
 
-    let CharElement = splitChars.map((char, id) => {
-      return <CharComponent letter={char} key={id} />
+    let CharElement = chars.map((char, id) => {
+      if (char !== ' ') {
+      return <CharComponent letter={char} key={id} deleted={() => this.deleteHandler(id)}/>
+      }
     })
     // let lettersList = letters.map((letter) => {
     //   return <CharComponent val={letter}/>
@@ -51,9 +58,6 @@ class App extends Component {
         <ValidationComponent length={this.state.length}/>
         <button onClick={this.charhandler}>push to char</button>
         {CharElement}
-        <ul>
-
-        </ul>
       </div>
     );
   }
